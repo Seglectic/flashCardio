@@ -8,10 +8,15 @@
 // █                                   █
 // █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
 // 
-// ╭────────────────────────────────────────────╮
-// │  //TODO Should have earliest and last      │
-// │  values								    │
-// ╰────────────────────────────────────────────╯
+
+// ┌──────────────────────────────────────────────────────────┐
+// │  //TODO Needs a selector that will change kanji font     │
+// │   Should also be able to swap between handwritten kanji  │
+// │   font and computer font. Should change chicago font too.│
+// │                                                          │
+// │   //TODO Maybe remove primitive meanings for the words   │
+// │                                                          │
+// └──────────────────────────────────────────────────────────┘
 
 /* ------------------------------------ Global vars ----------------------------------- */
 var version     = 1.0;		// System version
