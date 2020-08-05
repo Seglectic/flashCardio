@@ -10,11 +10,16 @@
 // 
 
 // ┌──────────────────────────────────────────────────────────┐
-// │  //TODO Needs a selector that will change kanji font     │
-// │   Should also be able to swap between handwritten kanji  │
-// │   font and computer font. Should change chicago font too.│
+// │ //TODO Needs a selector that will change kanji font      │
+// │ Should also be able to swap between handwritten kanji    │
+// │ font and computer font. Should change chicago font too.  │
 // │                                                          │
-// │   //TODO Maybe remove primitive meanings for the words   │
+// │ //TODO Maybe remove primitive meanings for the words     │
+// │ or have a better way to integrate them onto the card     │	
+// │                                                          │
+// │ //TODO Add an options panel to control Kanji font,       │
+// │ whether card flips back around on drawing new card and   │
+// │ range of kanji characters as listed in RTK               │
 // │                                                          │
 // └──────────────────────────────────────────────────────────┘
 
@@ -28,12 +33,11 @@ var randomTimer = 0;		// Holds time when we can draw another card
 var randomTime  = 500;		// Interval at which we can draw a card
 
 
-
-
 /* ---------------------------------- Hotkey Controls --------------------------------- */
 
 function cardKeys(e){ //Keybind to flip card
 	// console.log(e.keyCode)
+	//TODO Turn this back into a switch thing maybe
 	if(e.keyCode==82 || e.keyCode==17){
 		$("#card").flip("toggle");
 	}
@@ -63,7 +67,7 @@ function kanjiGet(){ 	//Get kanji list from server
 function crunchKanji(){   // Process Kanji, iterate through each and add to deck
 	for (let i = 0; i < kanji.length; i++) {
 		var k = kanji[i];
-		if(k.includes(",")){ 	//If line has ','; it's assumed to have a definition and should be added to card array
+		if(k.includes(",")){ 	//If has ','; assumed to have a definition so add to deck
 			k = k.split(',');
 			kanjiDeck.push({front:k[0],back:k[1]})
 		}
