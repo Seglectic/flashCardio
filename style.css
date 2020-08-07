@@ -76,7 +76,7 @@ body{
 	user-select: none;
 }
 
-/* Simulated light flash when blending between random cards */
+/* ------------- Simulated light flash when blending between random cards ------------- */
 .cardFlash{
 	background: rgb(255,254,246);
 	background: linear-gradient(180deg, rgba(255,254,246,0.9) 0%, rgba(255,246,194,1) 100%);
@@ -114,7 +114,7 @@ button {
 /* -------------------------------------- Footer -------------------------------------- */
 
 #footerRight{
-	font-family: chicago;
+	/* font-family: chicago; */
 	font-size:10pt;
 	position: absolute;
 	bottom:3px;

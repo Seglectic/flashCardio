@@ -27,28 +27,35 @@
 var version     = 1.0;		// System version
 var kanji       = [];		// Raw list of kanji
 var kanjiDeck   = [];		// Array to hold kanji to display
-var discardDeck = [];		// Hold seen kanji here when displayed
+var discardDeck = [];		// Move kanji to this deck after displayed
 var textIndex   = 2;		// Which text div is currently displayed
-var randomTimer = 0;		// Holds time when we can draw another card
-var randomTime  = 500;		// Interval at which we can draw a card
+var drawTimer = 0;		// Holds time when we can draw another card
+var drawTime  = 500;		// Interval at which we can draw a card
 
 
 /* ---------------------------------- Hotkey Controls --------------------------------- */
 
 function cardKeys(e){ //Keybind to flip card
-	// console.log(e.keyCode)
-	//TODO Turn this back into a switch thing maybe
-	if(e.keyCode==82 || e.keyCode==17){
-		$("#card").flip("toggle");
-	}
-	if(e.keyCode==32){
-		randCard();
+	switch (e.keyCode) {
+		case 82:
+			$("#card").flip("toggle");
+			break;
+		case 17:
+			$("#card").flip("toggle");
+			break;
+		case 32:
+			randCard();
+			break;
+		default:
+			console.log(e.keyCode);
+			break;
 	}
 }
 addEventListener("keydown",cardKeys)
 
 
-function kanjiGet(){ 	//Get kanji list from server
+// Request KanjiCards.txt file from server
+function kanjiGet(){ 	
 	var kanjiReq = new XMLHttpRequest();
 	kanjiReq.open('GET', 'KanjiCards.txt');
 	kanjiReq.onreadystatechange = function() {
@@ -62,19 +69,19 @@ function kanjiGet(){ 	//Get kanji list from server
 	kanjiReq.send();
 }
 
-
-
-function crunchKanji(){   // Process Kanji, iterate through each and add to deck
+// Process Kanji file, iterate through each and add to deck
+function crunchKanji(){   
 	for (let i = 0; i < kanji.length; i++) {
 		var k = kanji[i];
-		if(k.includes(",")){ 	//If has ','; assumed to have a definition so add to deck
+		if(k.includes(",")){ 	                //If line has a comma, it should be added to deck
 			k = k.split(',');
 			kanjiDeck.push({front:k[0],back:k[1]})
 		}
 	}
 }
 
-function randomFlip(){ //Sets cards flip axis randomly
+//Sets cards flip axis randomly
+function randomFlip(){ 
 	var axis = 'x'
 	var reverse = false;
 	if(Math.random()>0.5){axis='y'}
@@ -82,16 +89,15 @@ function randomFlip(){ //Sets cards flip axis randomly
 	$("#card").flip({axis:axis,reverse:reverse});
 }
 
-function randCard(){ //Draw random card to display
-
-	if( Date.now()< randomTimer){return;} //Stop if timer isn't ready
-	randomTimer = Date.now()+randomTime
-
-	if(kanjiDeck.length==0){
+//Draw random card to display
+function randCard(){ 
+	if( Date.now() < drawTimer ){return;} 	// Stop if timer isn't ready
+	drawTimer = Date.now()+drawTime			// Update timer
+	if(kanjiDeck.length==0){				// Re-fill kanjiDeck when empty
 		discardDeck.forEach(e => {kanjiDeck.push(e);});
+		discardDeck = [];					// Purge discard Deck
 	}
-
-	$(".cardFlash").fadeIn(20);
+	$(".cardFlash").fadeIn(20);				
 	var cardID = Math.floor(Math.random() * kanjiDeck.length)
 	var newCard = kanjiDeck[cardID];
 	if(textIndex==1){
@@ -110,7 +116,6 @@ function randCard(){ //Draw random card to display
 	document.getElementById(`cardFront${textIndex}`).innerHTML=newCard.front;
 	document.getElementById(`cardBack${textIndex}`).innerHTML=newCard.back;
 	$(".cardFlash").fadeOut(500);
-
 	discardDeck.push(newCard);
 	kanjiDeck.splice(cardID,1);
 }
@@ -120,12 +125,10 @@ $( document ).ready(()=>{
 	kanjiGet();
 	var cardSettings = {             // Settings for flippable card
 		axis:"x",
-		trigger:"hover"
 	}
 	$("#card").flip({cardSettings}); // Create card object and apply settings object
 
 	// Show version in corner
-	// document.getElementById("footerRight")
 	$("#footerRight").text(`Version ${version}`)
 	$("#footerRight").fadeIn(1000);
 
