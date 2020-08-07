@@ -12,29 +12,24 @@
 
 <head>
 	<title>FlashCardio</title>
-	<!-- Get JSON -->
+	<!-- Grab JS Libs -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-
-	<!-- https://nnattawat.github.io/flip/ -->
-	
+	<script src="lib/jquery.flip.min.js"></script>
 	<!-- Load Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="style.css"> 
-
+	<!-- Main Cardio Script -->
+	<script type="text/javascript" src="cardio.js"></script>
+	<!-- Responsive Tag -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 </head>
 
 <body>
-	<!-- Load main page script -->
-	<script type="text/javascript" src="cardio.js"></script>
-
-
-<!-- Page Header -->
+<!-- ---------------------------------- Page Header ---------------------------------- -->
 <div id =pageHeader>
 	Flash Cardio<br>
 	<div id=subHeader>
 		Memory Exerciser
 	</div>
-		
 </div>
 
 <!-- ------------------------------- Flashcard Wrapper ------------------------------- -->
@@ -55,17 +50,33 @@
 		</div>
 
 		<!-- Random Button -->
-		<br><br><br><br><button id=random onclick="randCard()">Random</button>
+		<br><br><br><br><button id=random class=randomButton onclick="randCard()">Draw</button>
 
 	</div>
 
-	<!-- Footer? -->
+<!-- --------------------------------- Control Panel --------------------------------- -->
+
+<div id=controlPanel>
+	<div id=toggleArrow onclick="panelToggle()">
+		⬍
+	</div>
+
+	<div id=kanjiSelector class=option>
+		<input type=text id=cardFrom class=numInput></input> to <input type=text id=cardTo class=numInput></input>
+	</div>
+
+	<div id=flipMode class=option> 
+		<!-- <input type="checkbox" id=autoFlip value=autoFlip>Auto-flip card</input> -->
+	</div>
+
+</div>
+
+
+<!-- ------------------------------------ Footer ------------------------------------- -->
 	<div id=footerLeft onclick="$('#footerLeft').fadeOut()">
-		Spacebar = Draw Card
-		<br>
-		R / Ctrl = Flip Card
+
 	</div>	
 	<div id=footerRight hidden=true>
-		
 	</div>
+
 </body>
