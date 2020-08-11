@@ -18,13 +18,12 @@
 // │ or have a better way to integrate them onto the card     │	
 // │                                                          │
 // │ //TODO Add an options panel to control Kanji font,       │
-// │ whether card flips back around on drawing new card and   │
-// │ range of kanji characters as listed in RTK               │
+// │ whether card flips back around on drawing new card       │
 // │                                                          │
 // └──────────────────────────────────────────────────────────┘
 
 /* ------------------------------------ Global vars ----------------------------------- */
-var version      = 1.0;		// System version
+var version      = 1.1;		// System version
 var kanji        = [];		// Raw list of kanji
 var kanjiOrdered = [];		// Array to hold kanji in original RTK order
 var kanjiDeck    = [];		// Array to hold kanji to display
@@ -32,6 +31,7 @@ var discardDeck  = [];		// Move kanji to this deck after displayed
 var knownKanji 	 = 0;		// Number of defined kanji cards
 var textIndex    = 2;		// Which text div is currently displayed
 var drawTimer    = 0;    	// Holds time when we can draw another card
+var lastDraw	 = {};		// Holds value of previous card to keep unique
 var drawTime     = 500;  	// Interval at which we can draw a card
 var controlState = true;	// Whether control panel is deployed
 
@@ -111,8 +111,16 @@ function randCard(){
 		discardDeck = [];					// Purge discard
 	}
 	$(".cardFlash").fadeIn(20);				
-	var cardID = Math.floor(Math.random() * kanjiDeck.length)
-	var newCard = kanjiDeck[cardID];
+
+	while (true){							// Loop until new card is unique from prior
+		var cardID = Math.floor(Math.random() * kanjiDeck.length);
+		var newCard = kanjiDeck[cardID];
+		if(cardID==lastDraw || kanjiDeck.length+discardDeck.length<=2){continue;}
+		else{break;}
+	}
+
+	lastDraw = newCard;
+
 	if(textIndex==1){
 		$("#cardFront2").fadeIn(50);
 		$("#cardBack2").fadeIn(50);
