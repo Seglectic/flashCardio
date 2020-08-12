@@ -42,10 +42,10 @@
 升, Measuring Box
 昇, Rise up
 丸, Round
-寸
-肘
-専
-博
+寸, Glue
+肘, Elbow
+専, Specialty
+博, Dr.
 占
 上
 下
