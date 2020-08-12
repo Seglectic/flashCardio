@@ -162,6 +162,7 @@ function rangeUpdate(){
 		kanjiDeck.push(kanjiOrdered[i])
 	}
 	saveData();
+	randCard();
 }
 
 function saveData(){
@@ -187,7 +188,7 @@ $( document ).ready(()=>{
 
 	// Show version in corner
 	$("#footerRight").text(`
-		Version ${version}
+		(Spacebar: draw card | ctrl / R:  flip card) [Ver. ${version}]
 	`)
 	$("#footerRight").fadeIn(1000);
 
