@@ -112,7 +112,8 @@ function randCard(){
 	}
 	$(".cardFlash").fadeIn(20);				
 
-	while (true){							// Loop until new card is unique from prior
+	//FIXME Shit will break your tab?
+	while (true){							// Loop until new card is unique from prior 
 		var cardID = Math.floor(Math.random() * kanjiDeck.length);
 		var newCard = kanjiDeck[cardID];
 		if(cardID==lastDraw || kanjiDeck.length+discardDeck.length<=2){continue;}
