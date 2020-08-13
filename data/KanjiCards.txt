@@ -46,12 +46,12 @@
 肘, Elbow
 専, Specialty
 博, Dr.
-占
-上
-下
-卓
-朝
-嘲
+占, Fortune Telling
+上, Above
+下, Below
+卓, Eminent
+朝, Morning
+嘲, Derision
 只
 貝
 唄
