@@ -35,26 +35,26 @@
 旧, Olden Times
 自, Oneself
 白, White
-百
-中
-千
-舌
-升
-昇
-丸
-寸
-肘
-専
-博
-占
-上
-下
-卓
-朝
-嘲
-只
-貝
-唄
+百, One Hundred
+中, In
+千, Thousand
+舌, Tongue
+升, Measuring Box
+昇, Rise up
+丸, Round
+寸, Measurement
+肘, Elbow
+専, Specialty
+博, Dr.
+占, Fortune Telling
+上, Above
+下, Below
+卓, Eminent
+朝, Morning
+嘲, Derision
+只, Only
+貝, Shellfish
+唄, Pop Song
 貞
 員
 貼
