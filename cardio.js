@@ -199,5 +199,5 @@ $( document ).ready(()=>{
 	$("#cardFrom").change(()=>{rangeUpdate();});
 	$("#cardTo").change(()=>{rangeUpdate();});
 
-	loadData();
+	// loadData();
 })
